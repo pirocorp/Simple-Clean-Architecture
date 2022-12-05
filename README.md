@@ -19,6 +19,8 @@ If you **don’t have an enterprise**, and are just writing a single application
 
 ### Application Layer
 
+This will contain all **Interfaces**, **Models**, **Logic**, **Commands/Queries**, **Validators**, **Exceptions**, **CQRS**, **MediatR**, types and logic specific to the application layer.
+
 This layer contains all application logic. It is dependent on the domain layer, but has no dependencies on any other layer or project. This layer defines interfaces that are implemented by outside layers. For example, if the application need to access a notification service, a new interface would be added to application and an implementation would be created within infrastructure.
 
 The software in this layer contains application specific business rules. It encapsulates and implements all of the use cases of the system. These use cases orchestrate the flow of data to and from the entities, and direct those entities to use their enterprise wide business rules to achieve the goals of the use case.
@@ -30,12 +32,16 @@ We do, however, expect that changes to the operation of the application will aff
 
 ### Infrastructure Layer
 
+This will contain all **Persistence**, **Identity**, **File System**, **System Clock**, **Api Clients**, **Unit of Work**, **Repository Patterns**, types and logic specific to the infrastrucutre layer.
+
 This layer contains classes for accessing external resources such as file systems, web services, smtp, and so on. These classes should be based on interfaces defined within the application layer.
 
 
 ### Presentation Layer
 
 This layer depends on both the **Application** and **Infrastructure layers**, however, **the dependency on Infrastructure is only to support dependency injection**. Therefore only Startup.cs should reference Infrastructure.
+
+Can be **SPA**, **Web API**, **Razor Pages**, **MVC**, **Web Forms**, etc.
 
 
 ### The outermost layer (Infrastructure + Presentation)

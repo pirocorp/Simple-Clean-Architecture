@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore;
 internal class EmployeeService : IEmployeeService
 {
     private readonly IApplicationDbContext context;
-    private readonly IDateTime dateTimeService;
+    private readonly IDateTimeService dateTimeServiceService;
     private readonly IDepartmentService departmentService;
 
     public EmployeeService(
         IApplicationDbContext dbContext,
-        IDateTime dateTimeService,
+        IDateTimeService dateTimeServiceService,
         IDepartmentService departmentService)
     {
         this.context = dbContext;
-        this.dateTimeService = dateTimeService;
+        this.dateTimeServiceService = dateTimeServiceService;
         this.departmentService = departmentService;
     }
 
@@ -45,7 +45,7 @@ internal class EmployeeService : IEmployeeService
         var employee = Employee.Create(
             name, 
             age, 
-            this.dateTimeService.Now,
+            this.dateTimeServiceService.Now,
             email, 
             address, 
             gender, 

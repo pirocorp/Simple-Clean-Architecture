@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 internal class DepartmentService : IDepartmentService
 {
     private readonly IApplicationDbContext context;
-    private readonly IDateTime dateTime;
+    private readonly IDateTimeService dateTimeService;
 
     public DepartmentService(
         IApplicationDbContext dbContext,
-        IDateTime dateTime)
+        IDateTimeService dateTimeService)
     {
         this.context = dbContext;
-        this.dateTime = dateTime;
+        this.dateTimeService = dateTimeService;
     }
 
     public async Task<Department?> GetById(int id)
@@ -32,7 +32,7 @@ internal class DepartmentService : IDepartmentService
         string name, 
         CancellationToken cancellationToken)
     {
-        var department = Department.Create(name, this.dateTime.Now);
+        var department = Department.Create(name, this.dateTimeService.Now);
 
         await this.context.Departments.AddAsync(department, cancellationToken);
         await this.context.SaveChangesAsync(cancellationToken);

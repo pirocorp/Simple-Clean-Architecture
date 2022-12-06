@@ -5,18 +5,10 @@ using System.Collections.Generic;
 
 public class Department
 {
-    public Department(
-        int id, 
-        DateTime createdAt, 
-        bool isActive, 
-        string name, 
-        ICollection<Employee> employees)
+    public Department()
     {
-        Id = id;
-        CreatedAt = createdAt;
-        IsActive = isActive;
-        Name = name;
-        Employees = employees;
+        this.Name = string.Empty;
+        this.Employees = new HashSet<Employee>();
     }
 
     private Department(
@@ -30,15 +22,15 @@ public class Department
         this.Employees = new HashSet<Employee>();
     }
 
-    public int Id { get; }
+    public int Id { get; private set; }
 
-    public DateTime CreatedAt { get; }
+    public DateTime CreatedAt { get; private set; }
 
     public bool IsActive { get; private set; }
 
     public string Name { get; private set; }
 
-    public ICollection<Employee> Employees { get; }
+    public ICollection<Employee> Employees { get; private set; }
 
     public static Department Create(string name, DateTime createdAt)
         => new (name, createdAt);

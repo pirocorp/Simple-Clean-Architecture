@@ -7,30 +7,13 @@ using CleanArchitecture.Domain.ValueObjects;
 
 public class Employee
 {
-    public Employee(
-        int id, 
-        Address address, 
-        int age, 
-        DateTime createdAt, 
-        string email, 
-        Gender gender, 
-        bool isActive, 
-        string name, 
-        decimal salary, 
-        int departmentId, 
-        Department department)
+    public Employee()
     {
-        Id = id;
-        Address = address;
-        Age = age;
-        CreatedAt = createdAt;
-        Email = email;
-        Gender = gender;
-        IsActive = isActive;
-        Name = name;
-        Salary = salary;
-        DepartmentId = departmentId;
-        Department = department;
+        this.Address = Address.Empty;
+        this.Email = string.Empty;
+        this.Name = string.Empty;
+
+        this.Department = null!;
     }
 
     private Employee(
@@ -55,27 +38,27 @@ public class Employee
         this.Department = null!;
     }
 
-    public int Id { get; }
+    public int Id { get; private set; }
 
     public Address Address { get; private set; }
 
-    public int Age { get; }
+    public int Age { get; private set; }
 
-    public DateTime CreatedAt { get; }
+    public DateTime CreatedAt { get; private set; }
 
     public string Email { get; private set; }
 
-    public Gender Gender { get; }
+    public Gender Gender { get; private set; }
 
     public bool IsActive { get; private set; }
 
-    public string Name { get; }
+    public string Name { get; private set; }
 
     public decimal Salary { get; private set; }
 
     public int DepartmentId { get; private set; }
 
-    public Department Department { get; }
+    public Department Department { get; private set; }
 
     public static Employee Create(
         string name,

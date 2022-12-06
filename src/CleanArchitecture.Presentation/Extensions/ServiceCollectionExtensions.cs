@@ -2,8 +2,6 @@
 
 using System.Reflection;
 
-using Infrastructure.Persistence;
-
 public static class ServiceCollectionExtensions
 {
     /// <summary>
@@ -12,7 +10,7 @@ public static class ServiceCollectionExtensions
     /// <param name="services">IServiceCollection Container</param>
     /// <param name="assemblies">Assemblies from where to import dependencies</param>
     /// <returns>IServiceCollection Container with added services</returns>
-    public static IServiceCollection AddDomainServices(
+    public static IServiceCollection AddServices(
         this IServiceCollection services, 
         params Assembly[] assemblies)
     {

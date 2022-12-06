@@ -36,7 +36,7 @@ public class Program
             .AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(sqlServerConnectionString));
 
-        services.AddDomainServices(
+        services.AddServices(
             typeof(IApplicationDbContext).Assembly,
             typeof(ApplicationDbContext).Assembly);
 

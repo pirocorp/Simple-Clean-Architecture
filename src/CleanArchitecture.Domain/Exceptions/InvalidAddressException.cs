@@ -4,7 +4,7 @@ using System;
 
 public class InvalidAddressException : Exception
 {
-    public InvalidAddressException()
-        : base("Address is not valid.")
+    public InvalidAddressException(string message)
+        : base($"Address is not valid. {message}")
     { }
 }

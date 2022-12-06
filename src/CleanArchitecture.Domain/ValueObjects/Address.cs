@@ -1,5 +1,6 @@
 ﻿namespace CleanArchitecture.Domain.ValueObjects;
 
+using System;
 using System.Collections.Generic;
 
 using CleanArchitecture.Domain.Common;
@@ -16,7 +17,7 @@ public class Address : ValueObject
     {
         if (postCode < 0 || streetNumber < 0)
         {
-            throw new InvalidAddressException();
+            throw new InvalidAddressException("Post code or street number cannot be negative.");
         }
 
         Municipality = municipality;
@@ -60,5 +61,29 @@ public class Address : ValueObject
     public override string ToString()
     {
         return $"{this.Street} {this.StreetNumber}, {this.PostCode} {this.Municipality}, {this.Province}";
+    }
+
+    public static Address From(string address)
+    {
+        var tokens = address
+            .Split(", ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+        if (tokens.Length != 5)
+        {
+            throw new InvalidAddressException("Missing information to form complete address.");
+        }
+
+        var street = tokens[0];
+        var validStreetNumber = int.TryParse(tokens[1], out var streetNumber);
+        var validPostCode = int.TryParse(tokens[2], out var postCode);
+        var municipality = tokens[3];
+        var province = tokens[4];
+
+        if (!validStreetNumber || validPostCode)
+        {
+            throw new InvalidAddressException("Invalid street number or post code.");
+        }
+
+        return new Address(municipality, postCode, province, street, streetNumber);
     }
 }

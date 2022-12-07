@@ -31,9 +31,9 @@ public class DepartmentsController : ApiControllerBase
     [HttpPatch("{id}")]
     public async Task<ActionResult<DepartmentDetailsDto>> RenameDepartment(
         int id,
-        string name,
+        RenameDepartmentDto dto,
         CancellationToken cancellationToken)
-        => this.OkOrNotFound(await this.departmentService.RenameDepartment(id, name, cancellationToken));
+        => this.OkOrNotFound(await this.departmentService.RenameDepartment(id, dto, cancellationToken));
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id, CancellationToken cancellationToken)

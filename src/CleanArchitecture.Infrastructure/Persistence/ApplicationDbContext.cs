@@ -7,7 +7,7 @@ using CleanArchitecture.Domain.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext, IDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

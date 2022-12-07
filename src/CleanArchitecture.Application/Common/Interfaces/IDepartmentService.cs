@@ -1,16 +1,16 @@
 ﻿namespace CleanArchitecture.Application.Common.Interfaces;
 
-using Domain.Entities;
+using CleanArchitecture.Application.Departments;
 
 public interface IDepartmentService
 {
-    Task<Department?> GetById(int id);
+    Task<DepartmentFullDetailsDto?> GetById(int id);
 
-    Task<IEnumerable<Department>> GetAll();
+    Task<IEnumerable<DepartmentListingDto>> GetAll();
 
-    Task<Department> CreateDepartment(string name, CancellationToken cancellationToken);
+    Task<DepartmentDetailsDto> CreateDepartment(CreateDepartmentDto departmentDto, CancellationToken cancellationToken);
 
-    Task<bool> RenameDepartment(int id, string name, CancellationToken cancellationToken);
+    Task<DepartmentDetailsDto?> RenameDepartment(int id, RenameDepartmentDto dto, CancellationToken cancellationToken);
 
-    Task<bool> DeleteDepartment(int id, CancellationToken cancellationToken);
+    Task<DepartmentDetailsDto?> DeleteDepartment(int id, CancellationToken cancellationToken);
 }

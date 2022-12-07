@@ -4,7 +4,7 @@ using CleanArchitecture.Domain.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-public interface IApplicationDbContext
+public interface IDbContext
 {
     DbSet<Department> Departments { get; }
 

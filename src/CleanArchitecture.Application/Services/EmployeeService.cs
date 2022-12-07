@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IApplicationDbContext context;
+    private readonly IDbContext context;
     private readonly IDateTimeService dateTimeServiceService;
     private readonly IDepartmentService departmentService;
 
     public EmployeeService(
-        IApplicationDbContext dbContext,
+        IDbContext dbContext,
         IDateTimeService dateTimeServiceService,
         IDepartmentService departmentService)
     {

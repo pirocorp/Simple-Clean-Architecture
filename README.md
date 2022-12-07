@@ -1,6 +1,6 @@
 # Clean Architecture
 
-Simple Clean Architecture example with ***NO*** DDD, CQRS, etc. The application layer is implemented like Service Layer from classical n-layerd architecture.
+Simple Clean Architecture example with NO DDD, CQRS, etc. The application layer is implemented like Service Layer from classical n-layered architecture.
 
 ![image](https://user-images.githubusercontent.com/34960418/205628894-ed445a14-203a-4fe0-a603-93bcd1a2f9b4.png)
 

@@ -5,9 +5,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>a02697f0-6253-4b40-ac6f-4d076b200844</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-
-    <DockerfileRunArguments>-itd --network=bridge </DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>

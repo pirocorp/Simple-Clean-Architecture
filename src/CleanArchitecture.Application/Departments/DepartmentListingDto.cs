@@ -1,6 +1,9 @@
 ﻿namespace CleanArchitecture.Application.Departments;
 
-public class DepartmentListingDto
+using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Domain.Entities;
+
+public class DepartmentListingDto : IMapFrom<Department>
 {
     public int Id { get; set; }
 

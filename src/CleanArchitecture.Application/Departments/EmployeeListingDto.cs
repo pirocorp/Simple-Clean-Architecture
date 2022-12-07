@@ -1,10 +1,11 @@
 ﻿namespace CleanArchitecture.Application.Departments;
 
-using System.Data;
+using AutoMapper;
 
-using CleanArchitecture.Domain.Enums;
+using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Domain.Entities;
 
-public class EmployeeListingDto
+public class EmployeeListingDto : IMapFrom<Employee>
 {
     public int Id { get; set; }
 
@@ -21,4 +22,18 @@ public class EmployeeListingDto
     public string Name { get; set; } = string.Empty;
 
     public decimal Salary { get; set; }
+
+    public void Mapping(Profile profile)
+    {
+        profile
+            .CreateMap<Employee, EmployeeListingDto>()
+            .ForMember(
+                d => d.Address,
+                opt 
+                    => opt.MapFrom(s => s.Address.ToString()))
+            .ForMember(
+                d => d.Gender,
+                opt 
+                    => opt.MapFrom(s => s.Gender.ToString()));
+    }
 }

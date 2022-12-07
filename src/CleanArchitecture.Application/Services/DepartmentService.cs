@@ -1,5 +1,7 @@
 ﻿namespace CleanArchitecture.Application.Services;
 
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Departments;
 using CleanArchitecture.Domain.Entities;
@@ -10,46 +12,29 @@ internal class DepartmentService : IDepartmentService
 {
     private readonly IDbContext context;
     private readonly IDateTimeService dateTimeService;
+    private readonly IMapper mapper;
 
     public DepartmentService(
         IDbContext dbContext,
-        IDateTimeService dateTimeService)
+        IDateTimeService dateTimeService,
+        IMapper mapper)
     {
         this.context = dbContext;
         this.dateTimeService = dateTimeService;
+        this.mapper = mapper;
     }
 
     public async Task<DepartmentFullDetailsDto?> GetById(int id)
         => await this.context.Departments
             .AsNoTracking()
             .Where(d => d.IsActive)
-            .Select(d => new DepartmentFullDetailsDto
-            {
-                Id = d.Id,
-                Name = d.Name,
-                CreatedAt = d.CreatedAt,
-                Employees = d.Employees.Select(e => new EmployeeListingDto()
-                {
-                    Id = e.Id,
-                    Address = e.Address.ToString(),
-                    Age = e.Age,
-                    CreatedAt = e.CreatedAt,
-                    Email = e.Email,
-                    Gender = e.Gender.ToString(),
-                    Name = e.Name,
-                    Salary = e.Salary,
-                })
-            })
+            .ProjectTo<DepartmentFullDetailsDto>(this.mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(d => d.Id == id);
 
     public async Task<IEnumerable<DepartmentListingDto>> GetAll()
         => await this.context.Departments
             .Where(d => d.IsActive)
-            .Select(d => new DepartmentListingDto
-            {
-                Id = d.Id,
-                Name = d.Name,
-            })
+            .ProjectTo<DepartmentListingDto>(this.mapper.ConfigurationProvider)
             .ToListAsync();
 
     public async Task<DepartmentDetailsDto> CreateDepartment(
@@ -61,27 +46,20 @@ internal class DepartmentService : IDepartmentService
         await this.context.Departments.AddAsync(department, cancellationToken);
         await this.context.SaveChangesAsync(cancellationToken);
 
-        var response = new DepartmentDetailsDto
-        {
-            Id = department.Id,
-            Name = department.Name,
-            CreatedAt = department.CreatedAt
-        };
-
-        return response;
+        return this.mapper.Map<DepartmentDetailsDto>(department);
     }
 
     public async Task<DepartmentDetailsDto?> RenameDepartment(
         int id, 
         RenameDepartmentDto input, 
         CancellationToken cancellationToken)
-        => await this.UpdateDepartment(
+        => await this.UpdateDepartment<DepartmentDetailsDto>(
             id, 
             cancellationToken, 
             d => d.Rename(input.Name));
 
     public async Task<DepartmentDetailsDto?> DeleteDepartment(int id, CancellationToken cancellationToken)
-        => await UpdateDepartment(
+        => await UpdateDepartment<DepartmentDetailsDto>(
             id, 
             cancellationToken, 
             d => d.Delete());
@@ -91,7 +69,7 @@ internal class DepartmentService : IDepartmentService
             .Where(d => d.IsActive)
             .FirstOrDefaultAsync(d => d.Id == id);
 
-    private async Task<DepartmentDetailsDto?> UpdateDepartment(
+    private async Task<T?> UpdateDepartment<T>(
         int id,
         CancellationToken cancellationToken,
         Action<Department> action)
@@ -100,17 +78,12 @@ internal class DepartmentService : IDepartmentService
 
         if (department is null)
         {
-            return null;
+            return default(T);
         }
 
         action(department);
         await this.context.SaveChangesAsync(cancellationToken);
 
-        return new DepartmentDetailsDto
-        {
-            Id = department.Id,
-            Name = department.Name,
-            CreatedAt = department.CreatedAt,
-        };
+        return this.mapper.Map<T>(department);
     }
 }

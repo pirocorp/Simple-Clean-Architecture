@@ -36,9 +36,11 @@ public class Program
             .AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(sqlServerConnectionString));
 
-        services.AddServices(
-            typeof(IApplicationDbContext).Assembly,
+        services.AddApplicationServices(
+            typeof(IDbContext).Assembly,
             typeof(ApplicationDbContext).Assembly);
+
+        services.AddInfrastructureServices();
 
         services.AddControllers();
 

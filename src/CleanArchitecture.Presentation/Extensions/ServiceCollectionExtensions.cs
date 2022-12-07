@@ -1,5 +1,8 @@
 ﻿namespace CleanArchitecture.Presentation.Extensions;
 
+using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Infrastructure.Persistence;
+
 using System.Reflection;
 
 public static class ServiceCollectionExtensions
@@ -10,7 +13,7 @@ public static class ServiceCollectionExtensions
     /// <param name="services">IServiceCollection Container</param>
     /// <param name="assemblies">Assemblies from where to import dependencies</param>
     /// <returns>IServiceCollection Container with added services</returns>
-    public static IServiceCollection AddServices(
+    public static IServiceCollection AddApplicationServices(
         this IServiceCollection services, 
         params Assembly[] assemblies)
     {
@@ -28,6 +31,14 @@ public static class ServiceCollectionExtensions
             .ToList()
             .ForEach(s => services.AddTransient(s.Interface!, s.Implementation));
            
+        return services;
+    }
+
+    public static IServiceCollection AddInfrastructureServices(
+        this IServiceCollection services)
+    {
+        services.AddScoped<IDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
         return services;
     }
 }

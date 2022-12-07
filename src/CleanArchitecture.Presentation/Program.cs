@@ -1,6 +1,7 @@
 namespace CleanArchitecture.Presentation;
 
-using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application;
+using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Presentation.Extensions;
 
@@ -36,9 +37,7 @@ public class Program
             .AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(sqlServerConnectionString));
 
-        services.AddApplicationServices(
-            typeof(IDbContext).Assembly,
-            typeof(ApplicationDbContext).Assembly);
+        services.AddApplicationServices();
 
         services.AddInfrastructureServices();
 

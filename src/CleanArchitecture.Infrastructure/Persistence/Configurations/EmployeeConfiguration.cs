@@ -40,7 +40,7 @@ internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 
         employee
             .Property(e => e.Salary)
-            .HasPrecision(12, 10);
+            .HasPrecision(15, 10);
 
         employee
             .HasOne(e => e.Department)

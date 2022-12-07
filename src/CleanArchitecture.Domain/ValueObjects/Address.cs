@@ -70,7 +70,7 @@ public class Address : ValueObject
 
         if (tokens.Length != 5)
         {
-            throw new InvalidAddressException("Missing information to form complete address.");
+            throw new InvalidAddressException("Address should be in format: street street-number, post-code municipality, province");
         }
 
         var street = tokens[0];
@@ -79,7 +79,7 @@ public class Address : ValueObject
         var municipality = tokens[3];
         var province = tokens[4];
 
-        if (!validStreetNumber || validPostCode)
+        if (!validStreetNumber || !validPostCode)
         {
             throw new InvalidAddressException("Invalid street number or post code.");
         }

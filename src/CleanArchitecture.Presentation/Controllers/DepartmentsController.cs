@@ -3,6 +3,8 @@
 using Application.Common.Interfaces;
 using Application.Departments;
 
+using CleanArchitecture.Application.Employees;
+
 using Microsoft.AspNetCore.Mvc;
 
 public class DepartmentsController : ApiControllerBase

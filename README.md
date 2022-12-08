@@ -1,6 +1,6 @@
 # Clean Architecture
 
-Simple Clean Architecture example with ***NO*** DDD, CQRS, etc.
+Simple Clean Architecture example with NO DDD, CQRS, etc. The application layer is implemented like Service Layer from classical n-layered architecture. Highlights the difrences between n-layer and Clean/Hexagon/Onion architectures.
 
 ![image](https://user-images.githubusercontent.com/34960418/205628894-ed445a14-203a-4fe0-a603-93bcd1a2f9b4.png)
 
@@ -50,3 +50,16 @@ Can be **SPA**, **Web API**, **Razor Pages**, **MVC**, **Web Forms**, etc.
 The outermost layer is generally composed of frameworks and tools such as the Database, the Web Framework, etc. Generally you don’t write much code in this layer other than glue code that communicates to the next circle inwards.
 
 This layer is where all the details go. The Web is a detail. The database is a detail. We keep these things on the outside where they can do little harm.
+
+
+# Technologies
+
+- [ASP.NET Core 7](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
+- [Entity Framework Core 7](https://learn.microsoft.com/en-us/ef/core/)
+- [AutoMapper](https://automapper.org/)
+- [NUnit](https://nunit.org/)
+- [FluentAssertions](https://fluentassertions.com/)
+- [Moq](https://github.com/moq)
+
+
+

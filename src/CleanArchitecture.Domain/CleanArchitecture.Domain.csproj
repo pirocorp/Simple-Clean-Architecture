@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>CleanArchitecture.Domain</RootNamespace>
+    <AssemblyName>CleanArchitecture.Domain</AssemblyName>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

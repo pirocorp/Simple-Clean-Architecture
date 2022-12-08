@@ -33,7 +33,7 @@ internal class EmployeeService : IEmployeeService
     public async Task<EmployeeDetailsDto?> GetById(int id)
         => await this.context.Employees
             .Where(e => e.IsActive)
-            .AsNoTracking()
+            .AsNoTracking()                                                                       
             .ProjectTo<EmployeeDetailsDto>(this.mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(e => e.Id == id);
 

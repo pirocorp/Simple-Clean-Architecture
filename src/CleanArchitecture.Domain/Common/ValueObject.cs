@@ -33,7 +33,8 @@ public abstract class ValueObject
         }
 
         var other = (ValueObject)obj;
-        return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+        return GetEqualityComponents()
+            .SequenceEqual(other.GetEqualityComponents());
     }
 
     public override int GetHashCode()

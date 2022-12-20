@@ -2,6 +2,7 @@
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Departments;
 using CleanArchitecture.Domain.Entities;

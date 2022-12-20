@@ -2,6 +2,7 @@
 
 using CleanArchitecture.Domain.Exceptions;
 using CleanArchitecture.Domain.ValueObjects;
+
 using FluentAssertions;
 
 public class AddressTests

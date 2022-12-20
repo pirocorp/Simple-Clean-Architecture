@@ -8,7 +8,8 @@ using CleanArchitecture.Application.Employees;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Enums;
 using CleanArchitecture.Domain.Exceptions;
-using Domain.ValueObjects;
+using CleanArchitecture.Domain.ValueObjects;
+
 using Microsoft.EntityFrameworkCore;
 
 internal class EmployeeService : IEmployeeService

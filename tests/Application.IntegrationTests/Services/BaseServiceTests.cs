@@ -1,6 +1,5 @@
 ﻿namespace Application.IntegrationTests.Services;
 
-using System.Linq.Expressions;
 using AutoMapper;
 
 using CleanArchitecture.Application.Common.Interfaces;
@@ -8,7 +7,6 @@ using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Infrastructure.Persistence;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 using Moq;
 

@@ -3,6 +3,7 @@
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Enums;
 using CleanArchitecture.Domain.ValueObjects;
+
 using FluentAssertions;
 
 public class EmployeeTests

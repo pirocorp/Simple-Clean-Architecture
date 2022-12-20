@@ -1,6 +1,7 @@
 ﻿namespace Domain.UnitTests.Entities;
 
 using CleanArchitecture.Domain.Entities;
+
 using FluentAssertions;
 
 public class DepartmentTests

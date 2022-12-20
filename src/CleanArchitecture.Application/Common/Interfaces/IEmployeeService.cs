@@ -12,7 +12,12 @@ public interface IEmployeeService
         CreateEmployeeDto input,
         CancellationToken cancellationToken);
 
-    Task<EmployeeDto?> FireEmployee(int employeeId, CancellationToken cancellationToken);
+    Task<EmployeeDto?> FireEmployee(
+        int employeeId, 
+        CancellationToken cancellationToken);
 
-    Task<EmployeeDetailsDto?> Update(int id, UpdateEmployeeDto input, CancellationToken cancellationToken);
+    Task<EmployeeDetailsDto?> Update(
+        int id, 
+        UpdateEmployeeDto input, 
+        CancellationToken cancellationToken);
 }

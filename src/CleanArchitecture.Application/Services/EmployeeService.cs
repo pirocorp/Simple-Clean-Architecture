@@ -16,18 +16,15 @@ internal class EmployeeService : IEmployeeService
 {
     private readonly IDbContext context;
     private readonly IDateTimeService dateTimeServiceService;
-    private readonly IDepartmentService departmentService;
     private readonly IMapper mapper;
 
     public EmployeeService(
         IDbContext dbContext,
         IDateTimeService dateTimeServiceService,
-        IDepartmentService departmentService,
         IMapper mapper)
     {
         this.context = dbContext;
         this.dateTimeServiceService = dateTimeServiceService;
-        this.departmentService = departmentService;
         this.mapper = mapper;
     }
 

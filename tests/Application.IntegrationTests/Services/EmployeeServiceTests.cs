@@ -17,7 +17,6 @@ public class EmployeeServiceTests : BaseServiceTests
     private readonly IDateTimeService dateTimeService;
     
     private IDbContext context;
-    private IDepartmentService departmentService;
     private IEmployeeService employeeService;
     private List<Employee> employees;
 
@@ -27,7 +26,6 @@ public class EmployeeServiceTests : BaseServiceTests
         this.mapper = this.GetMapper();
 
         this.context = null!;
-        this.departmentService = null!;
         this.employeeService = null!;
         this.employees = null!;
     }
@@ -37,23 +35,13 @@ public class EmployeeServiceTests : BaseServiceTests
     {
         this.context = this.GetDatabase();
 
-        this.departmentService = new DepartmentService(
-            this.context,
-            this.dateTimeService,
-            this.mapper);
-
         this.employeeService = new EmployeeService(
             this.context,
             this.dateTimeService,
-            this.departmentService,
             this.mapper);
 
         this.InitializeEmployees();
     }
-
-    [Test]
-    public void DepartmentServiceIsCreatedCorrectly()
-        => this.departmentService.Should().NotBeNull();
 
     [Test]
     public void EmployeeServiceIsCreatedCorrectly()

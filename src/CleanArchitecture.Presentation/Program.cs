@@ -16,7 +16,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         ConfigureConfiguration(builder.Configuration);
-        ConfigureServices(builder.Services, builder.Environment);
+        ConfigureServices(builder.Services);
 
         var app = builder.Build();
 
@@ -31,7 +31,7 @@ public class Program
         sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection");
     }
 
-    private static void ConfigureServices(IServiceCollection services, IHostEnvironment env)
+    private static void ConfigureServices(IServiceCollection services)
     {
         services
             .AddDbContext<ApplicationDbContext>(

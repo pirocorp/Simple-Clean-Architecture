@@ -4,7 +4,7 @@ using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Presentation.Extensions;
-
+using Filters;
 using Microsoft.EntityFrameworkCore;
 
 public class Program
@@ -41,7 +41,8 @@ public class Program
 
         services.AddInfrastructureServices();
 
-        services.AddControllers();
+        services.AddControllers(
+            options => options.Filters.Add<ApiExceptionFilterAttribute>());
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

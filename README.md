@@ -69,6 +69,10 @@ Pipelines are only aware of what the Request or Response are, and this is an imp
 
 Pipelines are also extremely handy when it comes to wanting implement common logic like Validation and Logging, primarily because we can write code that executes during the request enabling you to validate or perform logging duties etc.
 
+### Unhandled Exception Behavior
+
+**UnhandledExceptionBehavior** catches all unhandled exceptions at the application layer, logs them, and throws them for handling in the API layer. **ApiExceptionFilterAttribute** handles Exceptions at the API layer.
+
 ## Notifications 
 
 ![image](https://user-images.githubusercontent.com/34960418/210239088-bc4fa7f6-eda5-48bf-8aa4-f97311b8b0a1.png)

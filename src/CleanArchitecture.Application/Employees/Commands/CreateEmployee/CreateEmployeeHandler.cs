@@ -2,10 +2,12 @@
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+
+using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Domain.Exceptions;
+
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

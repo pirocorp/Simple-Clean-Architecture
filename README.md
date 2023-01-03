@@ -104,6 +104,5 @@ Feature Slices or Vertical Slices are the terms used most for organizing by feat
 - [FluentAssertions](https://fluentassertions.com/)
 - [Moq](https://github.com/moq)
 - [MediatR](https://github.com/jbogard/MediatR)
-- [FluentValidation](https://fluentvalidation.net/)
 
 

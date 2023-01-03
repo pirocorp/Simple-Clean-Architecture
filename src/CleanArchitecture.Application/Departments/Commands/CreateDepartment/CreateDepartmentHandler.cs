@@ -1,8 +1,9 @@
 ﻿namespace CleanArchitecture.Application.Departments.Commands.CreateDepartment;
 
 using AutoMapper;
-using Common.Interfaces;
-using Domain.Entities;
+using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Domain.Events;
 using MediatR;
 
 public class CreateDepartmentHandler 
@@ -36,10 +37,9 @@ public class CreateDepartmentHandler
         await this.context.Departments.AddAsync(department, cancellationToken);
         await this.context.SaveChangesAsync(cancellationToken);
 
-        // TODO: Add Events
-        //await this.mediator.Publish(
-        //    new DepartmentCreatedEvent(department),
-        //    cancellationToken);
+        await this.mediator.Publish(
+            new DepartmentCreatedEvent(department),
+            cancellationToken);
 
         return this.mapper.Map<CreateDepartmentDetailsDto>(department);
     }

@@ -2,6 +2,7 @@
 
 using AutoMapper;
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,10 +41,9 @@ public class DeleteDepartmentHandler
         department.Delete();
         await this.context.SaveChangesAsync(cancellationToken);
 
-        // TODO: Add Events
-        //await this.mediator.Publish(
-        //    new DepartmentDeletedEvent(department),
-        //    cancellationToken);
+        await this.mediator.Publish(
+            new DepartmentDeletedEvent(department),
+            cancellationToken);
 
         return this.mapper.Map<DeleteDepartmentDetailsDto>(department);
     }

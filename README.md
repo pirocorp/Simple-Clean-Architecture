@@ -54,12 +54,7 @@ This layer is where all the details go. The Web is a detail. The database is a d
 
 # Examples
 
-- [ASP.NET Core 7](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
-- [Entity Framework Core 7](https://learn.microsoft.com/en-us/ef/core/)
-- [AutoMapper](https://automapper.org/)
-- [NUnit](https://nunit.org/)
-- [FluentAssertions](https://fluentassertions.com/)
-- [Moq](https://github.com/moq)
-
+- [Clean Architecture (No CQRS, DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-no-cqrs-no-ddd)
+- [Clean Architecture (No DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-with-cqrs-no-ddd)
 
 

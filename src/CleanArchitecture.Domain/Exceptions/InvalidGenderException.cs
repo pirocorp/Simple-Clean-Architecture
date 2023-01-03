@@ -4,7 +4,7 @@ using System;
 
 public class InvalidGenderException : Exception
 {
-    public InvalidGenderException()
+    public InvalidGenderException(string propertyName)
         : base("Invalid gender")
     { }
 }

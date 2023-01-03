@@ -1,11 +1,11 @@
-﻿namespace CleanArchitecture.Application.Departments;
+﻿namespace CleanArchitecture.Application.Employees.Queries.GetEmployeesById;
 
 using AutoMapper;
 
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Domain.Entities;
 
-public class EmployeeListingDto : IMapFrom<Employee>
+public class GetEmployeesByIdDto : IMapFrom<Employee>
 {
     public int Id { get; set; }
 
@@ -23,17 +23,21 @@ public class EmployeeListingDto : IMapFrom<Employee>
 
     public decimal Salary { get; set; }
 
+    public int DepartmentId { get; set; }
+
+    public string Department { get; set; } = string.Empty;
+
     public void Mapping(Profile profile)
     {
         profile
-            .CreateMap<Employee, EmployeeListingDto>()
-            .ForMember(
-                d => d.Address,
-                opt 
-                    => opt.MapFrom(s => s.Address.ToString()))
+            .CreateMap<Employee, GetEmployeesByIdDto>()
             .ForMember(
                 d => d.Gender,
-                opt 
-                    => opt.MapFrom(s => s.Gender.ToString()));
+                opt
+                    => opt.MapFrom(s => s.Gender.ToString()))
+            .ForMember(
+                d => d.Department,
+                opt
+                    => opt.MapFrom(s => s.Department.Name));
     }
 }

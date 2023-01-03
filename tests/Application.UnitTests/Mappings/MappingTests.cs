@@ -5,7 +5,11 @@ using System.Runtime.Serialization;
 using AutoMapper;
 
 using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.Departments;
+using CleanArchitecture.Application.Departments.Commands.CreateDepartment;
+using CleanArchitecture.Application.Departments.Commands.DeleteDepartment;
+using CleanArchitecture.Application.Departments.Commands.RenameDepartment;
+using CleanArchitecture.Application.Departments.Queries.GetDepartments;
+using CleanArchitecture.Application.Departments.Queries.GetDepartmentsById;
 using CleanArchitecture.Application.Employees;
 using CleanArchitecture.Domain.Entities;
 
@@ -30,7 +34,9 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(Department), typeof(DepartmentDetailsDto))]
+    [TestCase(typeof(Department), typeof(CreateDepartmentDetailsDto))]
+    [TestCase(typeof(Department), typeof(DeleteDepartmentDetailsDto))]
+    [TestCase(typeof(Department), typeof(RenameDepartmentDetailsDto))]
     [TestCase(typeof(Department), typeof(DepartmentFullDetailsDto))]
     [TestCase(typeof(Department), typeof(DepartmentListingDto))]
     [TestCase(typeof(Employee), typeof(EmployeeListingDto))]

@@ -1,44 +1,45 @@
 ﻿namespace CleanArchitecture.Presentation.Controllers
 {
-    using CleanArchitecture.Application.Common.Interfaces;
-    using CleanArchitecture.Application.Employees;
+    using CleanArchitecture.Application.Employees.Commands.CreateEmployee;
+    using CleanArchitecture.Application.Employees.Commands.FireEmployee;
+    using CleanArchitecture.Application.Employees.Commands.UpdateEmployee;
+    using CleanArchitecture.Application.Employees.Queries.GetEmployees;
+    using CleanArchitecture.Application.Employees.Queries.GetEmployeesById;
 
     using Microsoft.AspNetCore.Mvc;
 
     public class EmployeesController : ApiControllerBase
     {
-        private readonly IEmployeeService employeeService;
-
-        public EmployeesController(IEmployeeService employeeService)
-        {
-            this.employeeService = employeeService;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<EmployeeDetailsDto>> GetById(int id)
-            => this.OkOrNotFound(await this.employeeService.GetById(id));
+        [HttpGet(WITH_ID)]
+        public async Task<ActionResult<GetEmployeesByIdDto>> GetById(
+            int id, 
+            CancellationToken cancellationToken)
+            => this.OkOrNotFound(await this.Mediator
+                .Send(new GetEmployeesByIdQuery(id), cancellationToken));
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees()
-            => this.Ok(await this.employeeService.GetAll());
+        public async Task<ActionResult<IEnumerable<GetEmployeesListingDto>>> GetEmployees()
+            => this.Ok(await this.Mediator.Send(new GetEmployeesQuery()));
 
         [HttpPost]
-        public async Task<ActionResult<EmployeeDetailsDto>> CreateEmployee(
-            CreateEmployeeDto input,
+        public async Task<ActionResult<CreateEmployeeDto>> CreateEmployee(
+            CreateEmployeeCommand input,
             CancellationToken cancellationToken)
-            => await this.employeeService.CreateEmployee(input, cancellationToken);
+            => await this.Mediator.Send(input, cancellationToken);
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> FireEmployee(
+        [HttpDelete(WITH_ID)]
+        public async Task<ActionResult<FireEmployeeDto>> FireEmployee(
             int id,
             CancellationToken cancellationToken)
-            => this.NoContentOrNotFound(await this.employeeService.FireEmployee(id, cancellationToken));
+            => this.Ok(await this.Mediator
+                .Send(new FireEmployeeCommand(id), cancellationToken));
 
-        [HttpPost("{id}")]
-        public async Task<ActionResult<EmployeeDetailsDto>> UpdateEmployee(
+        [HttpPost(WITH_ID)]
+        public async Task<ActionResult<UpdateEmployeeDto>> UpdateEmployee(
             int id,
-            UpdateEmployeeDto input,
+            UpdateEmployeeCommand command,
             CancellationToken cancellationToken)
-            => this.OkOrNotFound(await this.employeeService.Update(id, input, cancellationToken));
+            => this.OkOrNotFound(await this.Mediator.Send(
+                command with { Id = id }, cancellationToken));
     }
 }

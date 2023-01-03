@@ -1,6 +1,6 @@
-# Clean Architecture
+# Clean Architecture with CQRS
 
-Simple Clean Architecture example with NO DDD, CQRS, etc. The application layer is implemented like Service Layer from classical n-layered architecture. Highlights the difrences between n-layer and Clean/Hexagon/Onion architectures.
+Simple Clean Architecture example with NO DDD, etc. The application layer is implemented like Service Layer from classical n-layered architecture. Highlights the difrences between n-layer and Clean/Hexagon/Onion architectures.
 
 ![image](https://user-images.githubusercontent.com/34960418/205628894-ed445a14-203a-4fe0-a603-93bcd1a2f9b4.png)
 
@@ -52,6 +52,39 @@ The outermost layer is generally composed of frameworks and tools such as the Da
 This layer is where all the details go. The Web is a detail. The database is a detail. We keep these things on the outside where they can do little harm.
 
 
+# Using [MediatR](https://github.com/jbogard/MediatR) for [CQRS](https://github.com/pirocorp/CSharp-Masterclass/tree/main/09.%20CQRS)
+
+**CQRS stands for Command and Query Responsibility Segregation**, a pattern that separates read and update operations for a data store. The flexibility created by migrating to CQRS allows a system to better evolve over time and prevents update commands from causing merge conflicts at the domain level.
+
+![image](https://user-images.githubusercontent.com/34960418/210239652-92b18c94-865a-4f64-a156-94ba2f681394.png)
+
+
+## MediatR Pipeline Behaviours
+
+### What are Pipelines
+
+**Requests**/**Responses** travel back and forth through Pipelines in ASP.net Core. When an Actor sends a request it passes the through a pipeline to the application, where an operation is performed using data contained in the request message. Once, the operation is completed a Response is sent back through the Pipeline containing the relevant data.
+
+Pipelines are only aware of what the Request or Response are, and this is an important concept to understand when thinking about **ASP.net Core Middleware**.
+
+Pipelines are also extremely handy when it comes to wanting implement common logic like Validation and Logging, primarily because we can write code that executes during the request enabling you to validate or perform logging duties etc.
+
+## Notifications 
+
+![image](https://user-images.githubusercontent.com/34960418/210239088-bc4fa7f6-eda5-48bf-8aa4-f97311b8b0a1.png)
+
+**MediatR** has concept Notification (event) with several interfaces, INotification, IAsyncNotification. The concept and how it works with MediatR are very similar to a request (Command or Query) and its appropriate handler. The difference with a Notification is it can have **many** handlers.
+
+- Request: only one handler
+- Notification: zero to many handlers
+
+
+## Vertical Slices
+
+Feature Slices or Vertical Slices are the terms used most for organizing by feature. Whatever our feature slice is, it surely makes sense to keep all that code together. 
+
+
+
 # Technologies
 
 - [ASP.NET Core 7](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
@@ -60,6 +93,6 @@ This layer is where all the details go. The Web is a detail. The database is a d
 - [NUnit](https://nunit.org/)
 - [FluentAssertions](https://fluentassertions.com/)
 - [Moq](https://github.com/moq)
-
+- [MediatR](https://github.com/jbogard/MediatR)
 
 

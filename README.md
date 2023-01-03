@@ -1,7 +1,5 @@
 # Clean Architecture
 
-Simple Clean Architecture example with NO DDD, CQRS, etc. The application layer is implemented like Service Layer from classical n-layered architecture. Highlights the difrences between n-layer and Clean/Hexagon/Onion architectures.
-
 ![image](https://user-images.githubusercontent.com/34960418/205628894-ed445a14-203a-4fe0-a603-93bcd1a2f9b4.png)
 
 
@@ -54,7 +52,7 @@ This layer is where all the details go. The Web is a detail. The database is a d
 
 # Examples
 
-- [Clean Architecture (No CQRS, DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-no-cqrs-no-ddd)
+- [Clean Architecture (No CQRS, No DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-no-cqrs-no-ddd)
 - [Clean Architecture (No DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-with-cqrs-no-ddd)
 
 

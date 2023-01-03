@@ -5,6 +5,9 @@ using CleanArchitecture.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using static CleanArchitecture.Domain.Common.DataConstants.Address;
+using static CleanArchitecture.Domain.Common.DataConstants.Employee;
+
 internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 {
     public void Configure(EntityTypeBuilder<Employee> employee)
@@ -19,28 +22,28 @@ internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
                 {
                     address
                         .Property(e => e.Street)
-                        .HasMaxLength(200);
+                        .HasMaxLength(STREET_MAX_LENGTH);
 
                     address
                         .Property(e => e.Municipality)
-                        .HasMaxLength(200);
+                        .HasMaxLength(MUNICIPALITY_MAX_LENGTH);
 
                     address
                         .Property(e => e.Province)
-                        .HasMaxLength(200);
+                        .HasMaxLength(PROVINCE_MAX_LENGTH);
                 });
 
         employee
             .Property(e => e.Email)
-            .HasMaxLength(200);
+            .HasMaxLength(EMAIL_MAX_LENGTH);
 
         employee
             .Property(e => e.Name)
-            .HasMaxLength(200);
+            .HasMaxLength(NAME_MAX_LENGTH);
 
         employee
             .Property(e => e.Salary)
-            .HasPrecision(15, 10);
+            .HasPrecision(SALARY_PRECISION, SALARY_SCALE);
 
         employee
             .HasOne(e => e.Department)

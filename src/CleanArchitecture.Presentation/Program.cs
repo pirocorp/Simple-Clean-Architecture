@@ -4,7 +4,7 @@ using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Presentation.Extensions;
-using Filters;
+using CleanArchitecture.Presentation.Filters;
 using Microsoft.EntityFrameworkCore;
 
 public class Program

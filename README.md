@@ -69,6 +69,11 @@ Pipelines are only aware of what the Request or Response are, and this is an imp
 
 Pipelines are also extremely handy when it comes to wanting implement common logic like Validation and Logging, primarily because we can write code that executes during the request enabling you to validate or perform logging duties etc.
 
+### Logging Pipeline Behavior
+
+Logging is area, where you don't really want to pollute your code with logging statements. Weaving logging code in amongst your business logic actually just adds to the complexity and ironically can often become the source of bugs when the primary reason to add logging to code is in order to help you troubleshoot and analyse the cause of bugs in your code.
+
+
 ### Unhandled Exception Behavior
 
 **UnhandledExceptionBehavior** catches all unhandled exceptions at the application layer, logs them, and throws them for handling in the API layer. **ApiExceptionFilterAttribute** handles Exceptions at the API layer.
@@ -87,6 +92,7 @@ Pipelines are also extremely handy when it comes to wanting implement common log
 
 Feature Slices or Vertical Slices are the terms used most for organizing by feature. Whatever our feature slice is, it surely makes sense to keep all that code together. 
 
+![image](https://user-images.githubusercontent.com/34960418/210380585-66327d0b-47fa-43e2-9cba-630fcead0e65.png)
 
 
 # Technologies
@@ -98,5 +104,6 @@ Feature Slices or Vertical Slices are the terms used most for organizing by feat
 - [FluentAssertions](https://fluentassertions.com/)
 - [Moq](https://github.com/moq)
 - [MediatR](https://github.com/jbogard/MediatR)
+- [FluentValidation](https://fluentvalidation.net/)
 
 

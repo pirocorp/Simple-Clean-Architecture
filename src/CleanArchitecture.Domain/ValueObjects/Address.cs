@@ -20,11 +20,11 @@ public class Address : ValueObject
             throw new InvalidAddressException("Post code or street number cannot be negative.");
         }
 
-        Municipality = municipality;
-        PostCode = postCode;
-        Province = province;
-        Street = street;
-        StreetNumber = streetNumber;
+        this.Municipality = municipality;
+        this.PostCode = postCode;
+        this.Province = province;
+        this.Street = street;
+        this.StreetNumber = streetNumber;
     }
 
     public string Municipality { get; set; }

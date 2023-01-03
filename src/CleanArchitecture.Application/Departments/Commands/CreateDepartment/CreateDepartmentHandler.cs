@@ -1,9 +1,11 @@
 ﻿namespace CleanArchitecture.Application.Departments.Commands.CreateDepartment;
 
 using AutoMapper;
+
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Events;
+
 using MediatR;
 
 public class CreateDepartmentHandler 

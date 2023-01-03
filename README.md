@@ -52,7 +52,7 @@ This layer is where all the details go. The Web is a detail. The database is a d
 
 # Examples
 
-- [Clean Architecture (No CQRS, DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-no-cqrs-no-ddd)
+- [Clean Architecture (No CQRS, No DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-no-cqrs-no-ddd)
 - [Clean Architecture (No DDD)](https://github.com/pirocorp/Simple-Clean-Architecture/tree/simple-clean-architecture-with-cqrs-no-ddd)
 
 

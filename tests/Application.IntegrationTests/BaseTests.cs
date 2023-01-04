@@ -1,4 +1,4 @@
-﻿namespace Application.IntegrationTests.Services;
+﻿namespace Application.IntegrationTests;
 
 using AutoMapper;
 
@@ -6,15 +6,19 @@ using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Infrastructure.Persistence;
 
+using FluentAssertions;
+
+using MediatR;
+
 using Microsoft.EntityFrameworkCore;
 
 using Moq;
 
-public abstract class BaseServiceTests
+public abstract class BaseTests
 {
     protected readonly DateTime DateTime;
 
-    protected BaseServiceTests()
+    protected BaseTests()
     {
         this.DateTime = DateTime.UtcNow;
     }
@@ -45,5 +49,22 @@ public abstract class BaseServiceTests
             .Options;
 
         return new ApplicationDbContext(dbOptions);
+    }
+
+    protected Mock<IMediator> GetMediator() => new ();
+
+    protected TAttribute TestPropertyForAttribute<TAttribute, TClass>(string propertyName)
+        where TAttribute : Attribute
+    {
+        var type = typeof(TClass);
+        var property = type.GetProperty(propertyName);
+
+        property.Should().NotBeNull();
+
+        var attributeIsDefined = Attribute.IsDefined(property!, typeof(TAttribute));
+
+        attributeIsDefined.Should().BeTrue();
+
+        return (TAttribute)Attribute.GetCustomAttribute(property!, typeof(TAttribute))!;
     }
 }

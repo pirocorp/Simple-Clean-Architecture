@@ -10,7 +10,10 @@ using CleanArchitecture.Application.Departments.Commands.DeleteDepartment;
 using CleanArchitecture.Application.Departments.Commands.RenameDepartment;
 using CleanArchitecture.Application.Departments.Queries.GetDepartments;
 using CleanArchitecture.Application.Departments.Queries.GetDepartmentsById;
-using CleanArchitecture.Application.Employees;
+using CleanArchitecture.Application.Employees.Commands.CreateEmployee;
+using CleanArchitecture.Application.Employees.Commands.FireEmployee;
+using CleanArchitecture.Application.Employees.Commands.UpdateEmployee;
+using CleanArchitecture.Application.Employees.Queries.GetEmployeesById;
 using CleanArchitecture.Domain.Entities;
 
 public class MappingTests
@@ -39,17 +42,19 @@ public class MappingTests
     [TestCase(typeof(Department), typeof(RenameDepartmentDetailsDto))]
     [TestCase(typeof(Department), typeof(DepartmentFullDetailsDto))]
     [TestCase(typeof(Department), typeof(DepartmentListingDto))]
+    [TestCase(typeof(Employee), typeof(CreateEmployeeDto))]
+    [TestCase(typeof(Employee), typeof(FireEmployeeDto))]
+    [TestCase(typeof(Employee), typeof(UpdateEmployeeDto))]
     [TestCase(typeof(Employee), typeof(EmployeeListingDto))]
-    [TestCase(typeof(Employee), typeof(EmployeeDetailsDto))]
-    [TestCase(typeof(Employee), typeof(EmployeeDto))]
+    [TestCase(typeof(Employee), typeof(GetEmployeesByIdDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
-        var instance = this.GetInstanceOf(source);
+        var instance = GetInstanceOf(source);
 
         this.mapper.Map(instance, source, destination);
     }
 
-    private object GetInstanceOf(Type type)
+    private static object GetInstanceOf(Type type)
         => type.GetConstructor(Type.EmptyTypes) != null 
             ? Activator.CreateInstance(type)! 
             : FormatterServices.GetUninitializedObject(type);
